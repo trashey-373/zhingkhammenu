@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Zhingkham Resort — Royal Digital Menu | Full Collection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Zhingkham Resort — Vertical Left Nav (Mobile & Desktop)</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -11,6 +11,7 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       background: #07080d;
       color: #f5f0e8;
@@ -19,6 +20,7 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+
     body::before {
       content: '';
       position: fixed;
@@ -28,7 +30,16 @@
       z-index: 0;
       opacity: 0.4;
     }
-    header {
+
+    /* LAYOUT: flex row, left nav + main */
+    .app-layout {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* original header (sticky) */
+    .original-header {
       position: sticky;
       top: 0;
       z-index: 100;
@@ -41,12 +52,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 24px 12px;
+      padding: 12px 16px;
       gap: 12px;
     }
     .logo-emblem img {
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
       display: block;
     }
     .brand-center {
@@ -55,31 +66,29 @@
     }
     .brand-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(17px, 4vw, 30px);
+      font-size: clamp(16px, 5vw, 28px);
       font-weight: 600;
       letter-spacing: 2px;
-      line-height: 1.1;
       background: linear-gradient(135deg, #e2c87a, #c9a84c, #a07830);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
     .brand-tagline {
-      font-size: 10px;
+      font-size: 8px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #fbff00;
-      margin-top: 2px;
     }
     .ornament {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       justify-content: center;
-      margin: 4px 0;
+      margin: 2px 0;
     }
     .ornament-line {
-      width: 28px;
+      width: 20px;
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(201,168,76,0.6));
     }
@@ -87,82 +96,102 @@
       background: linear-gradient(90deg, rgba(201,168,76,0.6), transparent);
     }
     .ornament-dot {
-      width: 4px;
-      height: 4px;
+      width: 3px;
+      height: 3px;
       background: #ffffff;
-      border-radius: 30%;
-      opacity: 0.8;
+      border-radius: 50%;
     }
-    .nav-wrapper {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      padding: 2px 2px 5px;
-    }
-    .nav-wrapper::-webkit-scrollbar {
-      height: 1px;
-      background: rgba(255,255,255,0.05);
-    }
-    .nav-wrapper::-webkit-scrollbar-thumb {
-      background: #cccac6;
-      border-radius: 5px;
-    }
-    nav {
+
+    /* FLEX ROW for left nav + content */
+    .content-row {
       display: flex;
-      gap: 0.5px;
-      min-width: max-content;
-      justify-content: center;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* LEFT NAVIGATION - vertical sidebar, sticky, works on mobile & desktop */
+    .nav-sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      background: rgba(7, 8, 13, 0.92);
+      backdrop-filter: blur(12px);
+      border-right: 1px solid rgba(201,168,76,0.25);
+      position: sticky;
+      top: 85px;
+      height: calc(100vh - 85px);
+      overflow-y: auto;
+      padding: 20px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 90;
+    }
+    .nav-sidebar .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #e2c87a, #c9a84c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      text-align: center;
     }
     .nav-btn {
       background: none;
-      border: 1px solid transparent;
-      color: #a09a8e;
+      border: none;
+      text-align: left;
+      padding: 10px 14px;
       font-family: 'Jost', sans-serif;
-      font-size: 8px;
+      font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.3px;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      padding: 3px 2px;
-      border-radius: 5px;
+      color: #a09a8e;
+      border-radius: 7px;
       cursor: pointer;
       transition: all 0.2s ease;
       white-space: nowrap;
+      width: 100%;
     }
     .nav-btn:hover {
+      background: rgba(201,168,76,0.12);
       color: #e2c87a;
-      border-color: rgba(201,168,76,0.5);
-      background: rgba(201,168,76,0.05);
+      transform: translateX(4px);
     }
     .nav-btn.active {
-      background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.08));
-      border-color: #c9a84c;
+      background: linear-gradient(135deg, rgba(201,168,76,0.25), rgba(201,168,76,0.1));
       color: #e2c87a;
-      box-shadow: 0 0 14px rgba(201,168,76,0.2);
+      border-left: 3px solid #c9a84c;
+      font-weight: 600;
     }
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 20px 16px 40px;
-      position: relative;
-      z-index: 2;
+
+    /* main content area */
+    .main-content {
+      flex: 1;
+      min-width: 0; /* prevent overflow */
+      padding: 16px 20px 40px;
     }
+
+    /* menu cards styling */
     .section-header {
       display: flex;
       align-items: center;
       gap: 16px;
-      margin: 32px 0 20px;
+      margin: 28px 0 16px;
     }
     .section-title-group h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 600;
-      letter-spacing: 1px;
     }
     .section-title-group p {
       font-size: 7px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: #5a5650;
+      color: #888;
     }
     .section-divider {
       flex: 1;
@@ -171,21 +200,19 @@
     }
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 14px;
     }
     .menu-card {
       background: #12131e;
       border: 1px solid rgba(255,255,255,0.05);
       border-radius: 16px;
-      padding: 18px 18px;
+      padding: 16px;
       transition: all 0.2s ease;
-      position: relative;
     }
     .menu-card:hover {
       border-color: rgba(201,168,76,0.5);
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.2);
     }
     .card-top {
       display: flex;
@@ -201,7 +228,6 @@
       color: #f5f0e8;
     }
     .item-price {
-      font-family: 'Jost', sans-serif;
       font-size: 14px;
       font-weight: 600;
       color: #c9a84c;
@@ -211,10 +237,9 @@
       white-space: nowrap;
     }
     .item-desc {
-      font-size: 12px;
+      font-size: 11px;
       color: #7c776b;
       margin-top: 6px;
-      line-height: 1.4;
     }
     .diet-dot {
       display: inline-block;
@@ -223,61 +248,50 @@
       border-radius: 50%;
       margin-right: 6px;
       vertical-align: middle;
-      box-shadow: 0 0 2px rgba(0,0,0,0.4);
     }
-    .dot-green { background-color: #6fcf97; box-shadow: 0 0 2px #6fcf97; }
-    .dot-brown { background-color: #b87c4f; box-shadow: 0 0 2px #cb8b56; }
+    .dot-green { background-color: #6fcf97; }
+    .dot-brown { background-color: #b87c4f; }
     .item-diet {
       display: inline-flex;
       align-items: center;
       font-size: 10px;
-      letter-spacing: 0.5px;
       margin-top: 10px;
       background: rgba(255,255,255,0.04);
       padding: 4px 10px;
       border-radius: 20px;
-      width: fit-content;
     }
     .buffet-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
       margin-bottom: 20px;
     }
     .buffet-card {
       background: linear-gradient(145deg, #12131e, #181928);
       border: 1px solid rgba(201,168,76,0.3);
       border-radius: 20px;
-      padding: 26px 16px;
+      padding: 20px 12px;
       text-align: center;
-      transition: 0.2s;
-    }
-    .buffet-card:hover {
-      border-color: #c9a84c;
-      transform: translateY(-3px);
     }
     .buffet-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 26px;
+      font-size: 22px;
       font-weight: 700;
-      margin: 8px 0;
+      margin: 6px 0;
     }
     .buffet-price {
-      font-size: 34px;
+      font-size: 30px;
       font-weight: 600;
       color: #e2c87a;
-      line-height: 1;
     }
     .buffet-currency {
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      font-size: 8px;
+      letter-spacing: 1px;
       color: #7c776b;
-      display: block;
     }
     .tax-notice {
       text-align: center;
-      font-size: 10px;
+      font-size: 9px;
       color: #5a5650;
       margin-top: 20px;
       padding-top: 8px;
@@ -286,12 +300,35 @@
     .menu-section.hidden {
       display: none;
     }
+    footer {
+      background: #0b0c12;
+      border-top: 1px solid rgba(201,168,76,0.2);
+      padding: 28px 16px 24px;
+      text-align: center;
+      margin-top: 24px;
+    }
+    .footer-location {
+      font-size: 15px;
+      letter-spacing: 1px;
+      color: #b9afa0;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    hr {
+      width: 60px;
+      margin: 8px auto;
+      border: none;
+      height: 1px;
+      background: rgba(201,168,76,0.3);
+    }
     .scroll-top {
       position: fixed;
-      bottom: 28px;
-      right: 24px;
-      width: 46px;
-      height: 46px;
+      bottom: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
       background: #181928;
       border: 1px solid #c9a84c;
       border-radius: 50%;
@@ -309,286 +346,296 @@
       opacity: 1;
       pointer-events: all;
     }
-    .scroll-top:hover {
-      background: #2a2a3a;
-      transform: translateY(-3px);
+
+    /* Responsive: on smaller screens, keep left nav vertical but reduce width */
+    @media (max-width: 700px) {
+      .nav-sidebar {
+        width: 130px;
+        padding: 16px 6px;
+        top: 75px;
+        height: calc(100vh - 85px);
+      }
+      .nav-btn {
+        padding: 8px 8px;
+        font-size: 10px;
+        white-space: normal;
+        text-align: center;
+      }
+      .nav-sidebar .nav-brand {
+        font-size: 17px;
+        margin-bottom: 12px;
+      }
+      .main-content {
+        padding: 3px 9px 25px;
+      }
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+      .buffet-grid {
+        grid-template-columns: 1fr;
+      }
+      .card-top {
+        flex-wrap: wrap;
+      }
+      .header-top {
+        padding: 8px 12px;
+      }
+      .logo-emblem img {
+        width: 55px;
+        height: 55px;
+      }
     }
-    footer {
-      background: #0b0c12;
-      border-top: 1px solid rgba(201,168,76,0.2);
-      padding: 32px 24px 28px;
-      text-align: center;
+
+    @media (max-width: 480px) {
+      .nav-sidebar {
+        width: 110px;
+      }
+      .nav-btn {
+        font-size: 13px;
+        padding: 6px 4px;
+      }
+      .item-name {
+        font-size: 13px;
+      }
     }
-    .footer-location {
-      font-size: 17px;
-      letter-spacing: 1px;
-      color: #b9afa0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    hr {
-      width: 80px;
-      margin: 10px auto;
-      border: none;
-      height: 1px;
-      background: rgba(201,168,76,0.3);
-    }
-    .footer-copyright {
-      font-size: 10px;
-      color: #5a5650;
-      margin-top: 12px;
-    }
-    @media (max-width: 768px) {
-      .menu-grid { grid-template-columns: 1fr; }
-      .header-top { padding: 10px 12px; }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .menu-section { animation: fadeUp 0.35s ease forwards; }
   </style>
 </head>
 <body>
-
-<header>
-  <div class="header-top">
-    <div class="logo-mark"><div class="logo-emblem"><img src="Logo.png" alt="emblem" onerror="this.style.opacity=0"></div></div>
-    <div class="brand-center">
-      <div class="brand-name">ZHINGKHAM RESORT</div>
-      <div class="ornament"><span class="ornament-line"></span><span class="ornament-dot"></span><span class="ornament-line right"></span></div>
-      <div class="brand-tagline">BHUTAN HOTELS AND RESTAURANT</div>
+<div class="app-layout">
+  <!-- original header -->
+  <header class="original-header">
+    <div class="header-top">
+      <div class="logo-mark"><div class="logo-emblem"><img src="Logo.png" alt="emblem" onerror="this.style.opacity=0"></div></div>
+      <div class="brand-center">
+        <div class="brand-name">ZHINGKHAM RESORT</div>
+        <div class="ornament"><span class="ornament-line"></span><span class="ornament-dot"></span><span class="ornament-line right"></span></div>
+        <div class="brand-tagline">BHUTAN HOTELS & RESTAURANT</div>
+      </div>
+      <div class="logo-mark"><div class="logo-emblem"><img src="Logo72ppi1.png" alt="logo" onerror="this.style.opacity=0"></div></div>
     </div>
-    <div class="logo-mark"><div class="logo-emblem"><img src="Logo72ppi1.png" alt="logo" onerror="this.style.opacity=0"></div></div>
-  </div>
-  <div class="nav-wrapper">
-    <nav id="mainNav">
+  </header>
+
+  <div class="content-row">
+    <!-- LEFT VERTICAL NAVIGATION (visible on mobile and desktop) -->
+    <aside class="nav-sidebar" id="leftNav">
+      <div class="nav-brand">MENU</div>
       <button class="nav-btn active" data-filter="all">All</button>
       <button class="nav-btn" data-filter="breakfast">Breakfast</button>
       <button class="nav-btn" data-filter="salads-soups">Salads & Soups</button>
       <button class="nav-btn" data-filter="snacks">Snacks & Starters</button>
-      <button class="nav-btn" data-filter="rice-noodles">Rice/Noodles/Breads</button>
+      <button class="nav-btn" data-filter="rice-noodles">Rice, Noodles <br> & Breads</button>
       <button class="nav-btn" data-filter="entree">Entrée</button>
-      <button class="nav-btn" data-filter="bhutanese">Bhutanese Specialties</button>
+      <button class="nav-btn" data-filter="bhutanese">Bhutanese</button>
       <button class="nav-btn" data-filter="curries">Curries & Indo-Chinese</button>
       <button class="nav-btn" data-filter="desserts">Desserts & Bakery</button>
       <button class="nav-btn" data-filter="beverages">Beverages</button>
-    </nav>
-  </div>
-</header>
+    </aside>
 
-<main>
-  <!-- ================== BREAKFAST SECTION ================= -->
-  <div id="section-breakfast" class="menu-section" data-section="breakfast">
-    <div class="section-header"><div class="section-title-group"><h2>Breakfast</h2><p>Buffet · Traditional · À la carte</p></div><div class="section-divider"></div></div>
-    <div class="buffet-grid">
-      <div class="buffet-card"><div class="buffet-name">Buffet Breakfast</div><div class="buffet-price">Nu. 400</div><div class="buffet-currency">Toast, Butter/Jam · Cornflakes · Porridge · Fresh Fruits · Choice of Egg · Fruit Juice · French Toast/Pancake · Tea/Coffee</div></div>
-      <div class="buffet-card"><div class="buffet-name">Bhutanese Breakfast</div><div class="buffet-price">Nu. 350</div><div class="buffet-currency">Red/White Rice, Ema Datshi/Mushroom Datshi, Suja</div></div>
-      <div class="buffet-card"><div class="buffet-name">Indian Breakfast</div><div class="buffet-price">Nu. 330</div><div class="buffet-currency">Puri Aloo Bhaji, Masala Tea</div></div>
-    </div>
-    <div class="menu-grid">
-      <!-- À la carte breakfast from 4.docx -->
-      <div class="menu-card"><div class="card-top"><span class="item-name">Pouch/Boiled Egg (2pcs)</span><span class="item-price">Nu. 90</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Scramble/Plain Omelet (2pcs)</span><span class="item-price">Nu. 80</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Masala Omelet (2pcs)</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Toast Butter Jam (4 pcs)</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Corn Flakes/Porridge with Milk</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">French Toast (4 pcs)</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Rice Porridge</span><span class="item-price">Nu. 70</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Masala Cheese Omelet</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg/Cheese</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Fried Egg (2pcs)</span><span class="item-price">Nu. 80</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
-    </div>
-    <div class="tax-notice">Buffet: 10% BST + 10% Service Charge | À la carte: 5% BST + 10% SC</div>
-  </div>
+    <main class="main-content">
+      <!-- BREAKFAST SECTION -->
+      <div id="section-breakfast" class="menu-section" data-section="breakfast">
+        <div class="section-header"><div class="section-title-group"><h2>Breakfast</h2><p>Buffet & À la carte</p></div><div class="section-divider"></div></div>
+        <div class="buffet-grid">
+          <div class="buffet-card"><div class="buffet-name">Buffet Breakfast</div><div class="buffet-price">Nu. 400</div><div class="buffet-currency">Toast, Jam, Cornflakes, Porridge, Fruits, Egg, Juice, Pancake, Tea/Coffee</div></div>
+          <div class="buffet-card"><div class="buffet-name">Bhutanese Breakfast</div><div class="buffet-price">Nu. 350</div><div class="buffet-currency">Red/White Rice, Ema Datshi/Mushroom Datshi, Suja</div></div>
+          <div class="buffet-card"><div class="buffet-name">Indian Breakfast</div><div class="buffet-price">Nu. 330</div><div class="buffet-currency">Puri Aloo Bhaji, Masala Tea</div></div>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-card"><div class="card-top"><span class="item-name">Pouch/Boiled Egg (2pcs)</span><span class="item-price">Nu. 90</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Scramble/Plain Omelet (2pcs)</span><span class="item-price">Nu. 80</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Masala Omelet (2pcs)</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Toast Butter Jam (4 pcs)</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Corn Flakes/Porridge with Milk</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">French Toast (4 pcs)</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Rice Porridge</span><span class="item-price">Nu. 70</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Masala Cheese Omelet</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Fried Egg (2pcs)</span><span class="item-price">Nu. 80</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
+        </div>
+        <div class="tax-notice">Rates are subject to 5% GST + 10% Service Charge</div>
+      </div>
 
-  <!-- ================== SALADS & SOUPS ================= -->
-  <div id="section-salads-soups" class="menu-section hidden" data-section="salads-soups">
-    <div class="section-header"><div class="section-title-group"><h2>Salads & Soups</h2><p>Fresh · Classic · Comfort</p></div><div class="section-divider"></div></div>
-    <div class="menu-grid">
-      <!-- Salads 2.docx -->
-      <div class="menu-card"><div class="card-top"><span class="item-name">Green Salad</span><span class="item-price">Nu. 130</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Hogay Salad</span><span class="item-price">Nu. 130</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Tomato Cucumber Salad</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Greek Salad</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Kachumber Salad</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Grill Chicken Salad</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Mayonnaise Salad</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <!-- Soups 2.docx -->
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Soup</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Non-veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Noodle Soup</span><span class="item-price">Nu. 240</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">French Onion Soup</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Cream of Tomato Soup</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Cream of Mushroom Soup</span><span class="item-price">Nu. 190</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Veg. Manchow Soup</span><span class="item-price">Nu. 160</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Beef Manchow Soup</span><span class="item-price">Nu. 260</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Beef</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Vegetable Soup</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Sweet and Sour Soup</span><span class="item-price">Nu. 140</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-    </div>
-    <div class="tax-notice">Rates subject to 10% BST & 10% Service Charge</div>
-  </div>
+      <!-- SALADS & SOUPS -->
+      <div id="section-salads-soups" class="menu-section hidden" data-section="salads-soups">
+        <div class="section-header"><div class="section-title-group"><h2>Salads & Soups</h2><p>Fresh & comforting</p></div><div class="section-divider"></div></div>
+        <div class="menu-grid">
+          <div class="menu-card"><div class="card-top"><span class="item-name">Green Salad</span><span class="item-price">Nu. 130</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Hogay Salad</span><span class="item-price">Nu. 130</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Tomato Cucumber Salad</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Greek Salad</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Kachumber Salad</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Grill Chicken Salad</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Mayonnaise Salad</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Soup</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Noodle Soup</span><span class="item-price">Nu. 240</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">French Onion Soup</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Cream of Tomato Soup</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Cream of Mushroom Soup</span><span class="item-price">Nu. 190</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Veg. Manchow Soup</span><span class="item-price">Nu. 160</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Beef Manchow Soup</span><span class="item-price">Nu. 260</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Beef</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Vegetable Soup</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Sweet and Sour Soup</span><span class="item-price">Nu. 140</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+        </div>
+        <div class="tax-notice">Rates are subject to 5% GST + 10% Service Charge</div>
+      </div>
 
-  <!-- ================== SNACKS & STARTERS ================= -->
-  <div id="section-snacks" class="menu-section hidden" data-section="snacks">
-    <div class="section-header"><div class="section-title-group"><h2>Snacks & Starters</h2><p>Sandwiches · Bites · Crispy</p></div><div class="section-divider"></div></div>
-    <div class="menu-grid">
-      <!-- 3.docx Refreshment & Snacks -->
-      <div class="menu-card"><div class="card-top"><span class="item-name">Grill Beef Sandwich (4pcs)</span><span class="item-price">Nu. 220</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Beef</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Sandwich (4pcs)</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Finger Chips</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Veg. Sandwich (4pcs)</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Cheese Stick (per hds)</span><span class="item-price">Nu. 130</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Cheese Sandwich (4pcs)</span><span class="item-price">Nu. 140</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Egg Sandwich (4pcs)</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Cheese Ball (6pcs)</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Vegetable Pokora (6pcs)</span><span class="item-price">Nu. 80</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Vegetable Spring Roll (2pcs)</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Paneer Pokora (6pcs)</span><span class="item-price">Nu. 90</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <!-- patties from bakery also snack-like -->
-      <div class="menu-card"><div class="card-top"><span class="item-name">Mushroom Patties (3pcs)</span><span class="item-price">Nu. 220</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Patties (3pcs)</span><span class="item-price">Nu. 260</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-    </div>
-    <div class="tax-notice">Rates subject to 10% BST & 10% Service Charge</div>
-  </div>
+      <!-- SNACKS & STARTERS -->
+      <div id="section-snacks" class="menu-section hidden" data-section="snacks">
+        <div class="section-header"><div class="section-title-group"><h2>Snacks & Starters</h2><p>Bites & sandwiches</p></div><div class="section-divider"></div></div>
+        <div class="menu-grid">
+          <div class="menu-card"><div class="card-top"><span class="item-name">Grill Beef Sandwich (4pcs)</span><span class="item-price">Nu. 220</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Beef</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Sandwich (4pcs)</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Finger Chips</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Veg. Sandwich (4pcs)</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Cheese Stick</span><span class="item-price">Nu. 130</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Cheese Sandwich (4pcs)</span><span class="item-price">Nu. 140</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Egg Sandwich (4pcs)</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Cheese Ball (6pcs)</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Vegetable Pokora (6pcs)</span><span class="item-price">Nu. 80</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Vegetable Spring Roll (2pcs)</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Paneer Pokora (6pcs)</span><span class="item-price">Nu. 90</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Mushroom Patties (3pcs)</span><span class="item-price">Nu. 220</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Patties (3pcs)</span><span class="item-price">Nu. 260</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+        </div>
+        <div class="tax-notice">Rates are subject to 5% GST + 10% Service Charge</div>
+      </div>
 
-  <!-- ================== RICE, NOODLES & BREADS ================= -->
-  <div id="section-rice-noodles" class="menu-section hidden" data-section="rice-noodles">
-    <div class="section-header"><div class="section-title-group"><h2>Rice, Noodles & Breads</h2><p>From wok & tandoor</p></div><div class="section-divider"></div></div>
-    <div class="menu-grid">
-      <!-- American Copsey, rice, chowmein, paratha, naan, etc. from 3.docx -->
-      <div class="menu-card"><div class="card-top"><span class="item-name">American Copsey Non Veg</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Non-veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">American Copsey Veg</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Plain Rice</span><span class="item-price">Nu. 110</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Red Rice</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Egg Fried Rice</span><span class="item-price">Nu. 160</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Vegetable Fried Rice</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Fried Rice</span><span class="item-price">Nu. 190</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Egg Chowmein</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Vegetable Chowmein</span><span class="item-price">Nu. 130</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Chowmein</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Aloo Paratha (1 pc)</span><span class="item-price">Nu. 70</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Paneer Paratha (1 pc)</span><span class="item-price">Nu. 50</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Plain Naan (1 pc)</span><span class="item-price">Nu. 85</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Butter Naan (1 pc)</span><span class="item-price">Nu. 80</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Puri (4 pcs)</span><span class="item-price">Nu. 80</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chapatti (4 pcs)</span><span class="item-price">Nu. 60</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Butter Chapatti (4 pcs)</span><span class="item-price">Nu. 80</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-    </div>
-    <div class="tax-notice">Rates subject to 10% BST & 10% Service Charge</div>
-  </div>
+      <!-- RICE, NOODLES & BREADS -->
+      <div id="section-rice-noodles" class="menu-section hidden" data-section="rice-noodles">
+        <div class="section-header"><div class="section-title-group"><h2>Rice, Noodles & Breads</h2><p>From the wok & tandoor</p></div><div class="section-divider"></div></div>
+        <div class="menu-grid">
+          <div class="menu-card"><div class="card-top"><span class="item-name">American Copsey Non Veg</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Non-veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">American Copsey Veg</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Plain Rice</span><span class="item-price">Nu. 110</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Red Rice</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Egg Fried Rice</span><span class="item-price">Nu. 160</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Vegetable Fried Rice</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Fried Rice</span><span class="item-price">Nu. 190</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Egg Chowmein</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Vegetable Chowmein</span><span class="item-price">Nu. 130</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Chowmein</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Aloo Paratha (1 pc)</span><span class="item-price">Nu. 70</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Paneer Paratha (1 pc)</span><span class="item-price">Nu. 50</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Plain Naan (1 pc)</span><span class="item-price">Nu. 85</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Butter Naan (1 pc)</span><span class="item-price">Nu. 80</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Puri (4 pcs)</span><span class="item-price">Nu. 80</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chapatti (4 pcs)</span><span class="item-price">Nu. 60</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Butter Chapatti (4 pcs)</span><span class="item-price">Nu. 80</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+        </div>
+        <div class="tax-notice">Rates are subject to 5% GST + 10% Service Charge</div>
+      </div>
 
-  <!-- ================== ENTRÉE ================= -->
-  <div id="section-entree" class="menu-section hidden" data-section="entree">
-    <div class="section-header"><div class="section-title-group"><h2>Entrée</h2><p>Grills & roasts</p></div><div class="section-divider"></div></div>
-    <div class="menu-grid">
-      <div class="menu-card"><div class="card-top"><span class="item-name">Roast Chicken</span><span class="item-price">Nu. 350</span></div><div class="item-desc">Served with Green Vegetable</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Austrian Chicken</span><span class="item-price">Nu. 380</span></div><div class="item-desc">with French Fries</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Grilled Chicken Leg</span><span class="item-price">Nu. 360</span></div><div class="item-desc">Green Vegetable</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Breast</span><span class="item-price">Nu. 350</span></div><div class="item-desc">Mushroom Sauce</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Grilled Pork</span><span class="item-price">Nu. 340</span></div><div class="item-desc">Boiled Vegetable (2 pcs)</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Drum Stick</span><span class="item-price">Nu. 270</span></div><div class="item-desc">French Fries</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Roast Pork</span><span class="item-price">Nu. 300</span></div><div class="item-desc">Boiled Vegetable</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Whole grilled Fish</span><span class="item-price">Nu. 570</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Fish</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Grilled Fish</span><span class="item-price">Nu. 285</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Fish</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Whole Roast Chicken</span><span class="item-price">Nu. 700</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-    </div>
-    <div class="tax-notice">Rates subject to 5% BST & 10% Service Charge</div>
-  </div>
+      <!-- ENTRÉE -->
+      <div id="section-entree" class="menu-section hidden" data-section="entree">
+        <div class="section-header"><div class="section-title-group"><h2>Entrée</h2><p>Grills & roasts</p></div><div class="section-divider"></div></div>
+        <div class="menu-grid">
+          <div class="menu-card"><div class="card-top"><span class="item-name">Roast Chicken</span><span class="item-price">Nu. 350</span></div><div class="item-desc">Green Vegetable</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Austrian Chicken</span><span class="item-price">Nu. 380</span></div><div class="item-desc">French Fries</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Grilled Chicken Leg</span><span class="item-price">Nu. 360</span></div><div class="item-desc">Green Vegetable</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Breast</span><span class="item-price">Nu. 350</span></div><div class="item-desc">Mushroom Sauce</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Grilled Pork</span><span class="item-price">Nu. 340</span></div><div class="item-desc">Boiled Vegetable (2 pcs)</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Drum Stick</span><span class="item-price">Nu. 270</span></div><div class="item-desc">French Fries</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Roast Pork</span><span class="item-price">Nu. 300</span></div><div class="item-desc">Boiled Vegetable</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Whole grilled Fish</span><span class="item-price">Nu. 570</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Fish</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Grilled Fish</span><span class="item-price">Nu. 285</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Fish</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Whole Roast Chicken</span><span class="item-price">Nu. 700</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+        </div>
+        <div class="tax-notice">Rates are subject to 5% GST + 10% Service Charge</div>
+      </div>
 
-  <!-- ================== BHUTANESE SPECIALTIES ================= -->
-  <div id="section-bhutanese" class="menu-section hidden" data-section="bhutanese">
-    <div class="section-header"><div class="section-title-group"><h2>Bhutanese Specialties</h2><p>Authentic flavors from the mountains</p></div><div class="section-divider"></div></div>
-    <div class="menu-grid">
-      <div class="menu-card"><div class="card-top"><span class="item-name">Phaksha Paa</span><span class="item-price">Nu. 380</span></div><div class="item-desc">Sliced Pork with Green Vegetable/radish</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Phaksha Fin Soiegey</span><span class="item-price">Nu. 350</span></div><div class="item-desc">Pork cubes with Chilli & Rice Noodle</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Phaksha Momo (Pork Dumplings)</span><span class="item-price">Nu. 180</span></div><div class="item-desc">6 pcs, served with Eazey</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Datshi Momo (Cheese Dumplings)</span><span class="item-price">Nu. 170</span></div><div class="item-desc">served with Eazey</div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Shamu Datshi</span><span class="item-price">Nu. 160</span></div><div class="item-desc">Mushroom with Cheese</div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Kewa Datshi (Potato with Cheese)</span><span class="item-price">Nu. 115</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Ema Datshi (Chilli with Cheese)</span><span class="item-price">Nu. 140</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Momo</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Maru</span><span class="item-price">Nu. 170</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Veg Thukpa</span><span class="item-price">Nu. 130</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Non-Veg Thukpa</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Non-veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Egg Thukpa</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
-    </div>
-    <div class="tax-notice">Rates subject to 10% BST & 10% Service Charge</div>
-  </div>
+      <!-- BHUTANESE SPECIALTIES -->
+      <div id="section-bhutanese" class="menu-section hidden" data-section="bhutanese">
+        <div class="section-header"><div class="section-title-group"><h2>Bhutanese Specialties</h2><p>Authentic flavors</p></div><div class="section-divider"></div></div>
+        <div class="menu-grid">
+          <div class="menu-card"><div class="card-top"><span class="item-name">Phaksha Paa</span><span class="item-price">Nu. 380</span></div><div class="item-desc">Sliced Pork with Greens/radish</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Phaksha Fin Soiegey</span><span class="item-price">Nu. 350</span></div><div class="item-desc">Pork cubes with Chilli & Rice Noodle</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Phaksha Momo (Pork Dumplings)</span><span class="item-price">Nu. 180</span></div><div class="item-desc">6pcs, Eazey</div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Datshi Momo (Cheese Dumplings)</span><span class="item-price">Nu. 170</span></div><div class="item-desc">with Eazey</div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Shamu Datshi</span><span class="item-price">Nu. 160</span></div><div class="item-desc">Mushroom with Cheese</div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Kewa Datshi (Potato with Cheese)</span><span class="item-price">Nu. 115</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Ema Datshi (Chilli with Cheese)</span><span class="item-price">Nu. 140</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Momo</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Maru</span><span class="item-price">Nu. 170</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Veg Thukpa</span><span class="item-price">Nu. 130</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Non-Veg Thukpa</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Non-veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Egg Thukpa</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Egg</div></div>
+        </div>
+        <div class="tax-notice">Rates are subject to 5% GST + 10% Service Charge</div>
+      </div>
 
-  <!-- ================== CURRIES & INDO-CHINESE ================= -->
-  <div id="section-curries" class="menu-section hidden" data-section="curries">
-    <div class="section-header"><div class="section-title-group"><h2>Curries & Indo-Chinese</h2><p>Rich gravies · Wok specialties</p></div><div class="section-divider"></div></div>
-    <div class="menu-grid">
-      <div class="menu-card"><div class="card-top"><span class="item-name">Pork Masala Curry</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Masala Curry</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Mixed Vegetable Curry</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Fried Dal</span><span class="item-price">Nu. 90</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Plain Dal</span><span class="item-price">Nu. 70</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Mutter Paneer</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Sliced Chicken with Vegetable</span><span class="item-price">Nu. 190</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Chilli</span><span class="item-price">Nu. 215</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Sliced Pork with Mushroom</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Mushroom with Cream Sauce</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Butter Fried Beans/Carrots</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Sautéed Vegetables</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Fish Sweet & Sour</span><span class="item-price">Nu. 190</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Fish</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Fish Curry</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Fish</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Deep Fried Fish</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Fish</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Pan Fried Fish</span><span class="item-price">Nu. 210</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Fish</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Chilli Paneer</span><span class="item-price">Nu. 190</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Aloo Jeera</span><span class="item-price">Nu. 90</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Pork Chilli</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Dal Tarka</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-    </div>
-    <div class="tax-notice">Rates subject to 10% BST & 10% Service Charge</div>
-  </div>
+      <!-- CURRIES & INDO-CHINESE -->
+      <div id="section-curries" class="menu-section hidden" data-section="curries">
+        <div class="section-header"><div class="section-title-group"><h2>Curries & Indo-Chinese</h2><p>Rich gravies & wok</p></div><div class="section-divider"></div></div>
+        <div class="menu-grid">
+          <div class="menu-card"><div class="card-top"><span class="item-name">Pork Masala Curry</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Masala Curry</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Mixed Vegetable Curry</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Fried Dal</span><span class="item-price">Nu. 90</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Plain Dal</span><span class="item-price">Nu. 70</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Mutter Paneer</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Sliced Chicken with Vegetable</span><span class="item-price">Nu. 190</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chicken Chilli</span><span class="item-price">Nu. 215</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Chicken</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Sliced Pork with Mushroom</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Mushroom with Cream Sauce</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Butter Fried Beans/Carrots</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Sautéed Vegetables</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Fish Sweet & Sour</span><span class="item-price">Nu. 190</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Fish</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Fish Curry</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Fish</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Deep Fried Fish</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Fish</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Pan Fried Fish</span><span class="item-price">Nu. 210</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Fish</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Chilli Paneer</span><span class="item-price">Nu. 190</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Aloo Jeera</span><span class="item-price">Nu. 90</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Pork Chilli</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-brown"></span> Pork</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Dal Tarka</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+        </div>
+        <div class="tax-notice">Rates are subject to 5% GST + 10% Service Charge</div>
+      </div>
 
-  <!-- ================== DESSERTS & BAKERY ================= -->
-  <div id="section-desserts" class="menu-section hidden" data-section="desserts">
-    <div class="section-header"><div class="section-title-group"><h2>Desserts & Bakery</h2><p>Sweet endings · Fresh pastries</p></div><div class="section-divider"></div></div>
-    <div class="menu-grid">
-      <div class="menu-card"><div class="card-top"><span class="item-name">Cream Caramel</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Jam Pan Cake</span><span class="item-price">Nu. 95</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Kheer (Rice Pudding)</span><span class="item-price">Nu. 110</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Fruits Cocktail</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Fruits Custard</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Brownie (per pcs)</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Eclairs (3 pcs)</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Butter Cookies (4pcs)</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Croissant (4 pcs)</span><span class="item-price">Nu. 210</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Doughnut (3pcs)</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-    </div>
-    <div class="tax-notice">Rates subject to 10% BST & 10% Service Charge</div>
-  </div>
+      <!-- DESSERTS & BAKERY -->
+      <div id="section-desserts" class="menu-section hidden" data-section="desserts">
+        <div class="section-header"><div class="section-title-group"><h2>Desserts & Bakery</h2><p>Sweet endings</p></div><div class="section-divider"></div></div>
+        <div class="menu-grid">
+          <div class="menu-card"><div class="card-top"><span class="item-name">Cream Caramel</span><span class="item-price">Nu. 180</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Jam Pan Cake</span><span class="item-price">Nu. 95</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Kheer (Rice Pudding)</span><span class="item-price">Nu. 110</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Fruits Cocktail</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Fruits Custard</span><span class="item-price">Nu. 120</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Brownie (per pcs)</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Eclairs (3 pcs)</span><span class="item-price">Nu. 150</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Butter Cookies (4pcs)</span><span class="item-price">Nu. 100</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Croissant (4 pcs)</span><span class="item-price">Nu. 210</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Doughnut (3pcs)</span><span class="item-price">Nu. 200</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+        </div>
+        <div class="tax-notice">Rates are subject to 5% GST + 10% Service Charge</div>
+      </div>
 
-  <!-- ================== BEVERAGES ================= -->
-  <div id="section-beverages" class="menu-section hidden" data-section="beverages">
-    <div class="section-header"><div class="section-title-group"><h2>Beverages</h2><p>Hot · Cold · Refreshing</p></div><div class="section-divider"></div></div>
-    <div class="menu-grid">
-      <div class="menu-card"><div class="card-top"><span class="item-name">Black Tea</span><span class="item-price">Nu. 40</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Black Coffee</span><span class="item-price">Nu. 60</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Milk Coffee</span><span class="item-price">Nu. 90</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Masala Tea</span><span class="item-price">Nu. 60</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Milk Tea</span><span class="item-price">Nu. 50</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Milk (per glass)</span><span class="item-price">Nu. 40</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Fruit Juice (glass)</span><span class="item-price">Nu. 60</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Hot Milk (Per Glass)</span><span class="item-price">Nu. 60</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
-      <div class="menu-card"><div class="card-top"><span class="item-name">Suja (Butter Tea)</span><span class="item-price">Nu. 60</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Bhutanese</div></div>
-    </div>
-    <div class="tax-notice">Rates subject to 5% BST & 10% Service Charge</div>
-  </div>
-</main>
+      <!-- BEVERAGES -->
+      <div id="section-beverages" class="menu-section hidden" data-section="beverages">
+        <div class="section-header"><div class="section-title-group"><h2>Beverages</h2><p>Hot & Cold</p></div><div class="section-divider"></div></div>
+        <div class="menu-grid">
+          <div class="menu-card"><div class="card-top"><span class="item-name">Black Tea</span><span class="item-price">Nu. 40</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Black Coffee</span><span class="item-price">Nu. 60</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Milk Coffee</span><span class="item-price">Nu. 90</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Masala Tea</span><span class="item-price">Nu. 60</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Milk Tea</span><span class="item-price">Nu. 50</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Milk (per glass)</span><span class="item-price">Nu. 40</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Fruit Juice (glass)</span><span class="item-price">Nu. 60</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Hot Milk (Per Glass)</span><span class="item-price">Nu. 60</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Veg</div></div>
+          <div class="menu-card"><div class="card-top"><span class="item-name">Suja (Butter Tea)</span><span class="item-price">Nu. 60</span></div><div class="item-diet"><span class="diet-dot dot-green"></span> Bhutanese Tea</div></div>
+        </div>
+        <div class="tax-notice">Rates are subject to 5% GST + 10% Service Charge</div>
+      </div>
 
-<footer>
-  <div class="footer-main">
-    <div class="footer-location"><span>📍 Punakha, Bhutan</span></div>
-    <div><span style="font-size: 11px;">📞 +975-02-58722/23/24/25</span> | <a style="color: rgb(241, 234, 234); text-decoration: none; font-size: 13px;" href="mailto:zhingkhamresort@gmail.com">zhingkhamresort@gmail.com</a></div>
-    <div><a style="color: rgb(150, 141, 141); text-decoration: none;font-size: 13px;" href="https://www.bhutanhotels.com.bt">www.bhutanhotels.com.bt</a></div>
-    <hr><div class="footer-copyright">Copyright © 2026 | Bhutan Hotels and Restaurants</div>
+      <!-- Original footer -->
+      <footer>
+        <div class="footer-location"><span>📍 Punakha, Bhutan</span></div>
+        <div><span style="font-size: 11px;">📞 +975-02-58722/23/24/25</span> | <a style="color: rgb(241, 234, 234); text-decoration: none; font-size: 13px;" href="mailto:zhingkhamresort@gmail.com">zhingkhamresort@gmail.com</a></div>
+        <div><a style="color: rgb(150, 141, 141); text-decoration: none; font-size: 13px;" href="https://www.bhutanhotels.com.bt">www.bhutanhotels.com.bt</a></div>
+        <hr><div style="font-size: 9px;" class="footer-copyright">Copyright © 2026 | Bhutan Hotels and Restaurants</div>
+      </footer>
+    </main>
   </div>
-</footer>
+</div>
+
 <button class="scroll-top" id="scrollTop"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg></button>
 
 <script>
@@ -613,9 +660,9 @@
   function scrollToTarget(sectionId) {
     const target = document.getElementById(sectionId);
     if (target && !target.classList.contains('hidden')) {
-      const headerHeight = document.querySelector('header').offsetHeight;
+      const headerOffset = 90;
       const elementPos = target.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: elementPos - headerHeight - 20, behavior: 'smooth' });
+      window.scrollTo({ top: elementPos - headerOffset, behavior: 'smooth' });
     }
   }
 
@@ -626,19 +673,17 @@
       const filterVal = btn.dataset.filter;
       filterMenu(filterVal);
       if (filterVal === 'all') {
-        const first = document.getElementById('section-breakfast');
-        if(first) { const top = first.offsetTop - document.querySelector('header').offsetHeight - 20; window.scrollTo({ top, behavior: 'smooth' }); }
+        const breakfastSection = document.getElementById('section-breakfast');
+        if (breakfastSection) window.scrollTo({ top: breakfastSection.offsetTop - 85, behavior: 'smooth' });
       } else {
-        const sectionId = `section-${filterVal}`;
-        scrollToTarget(sectionId);
+        scrollToTarget(`section-${filterVal}`);
       }
     });
   });
 
-  window.addEventListener('scroll', () => { scrollBtn.classList.toggle('visible', window.scrollY > 300); });
-  scrollBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 300));
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   filterMenu('all');
 </script>
 </body>
 </html>
-```
